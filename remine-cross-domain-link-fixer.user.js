@@ -17,14 +17,16 @@
 
 var X_DOMAIN_STRING = 'cross_domain_login=siteadmin.instructure.com'
 
-var links = document.getElementById('content').getElementsByTagName('a');
-for (var i = 0; i < links.length; i++) {
-  var link = links[i];
-  if (link.protocol === "https:" && link.host.match(/.instructure.com$/)) {
-    if (link.search) {
-      link.search = link.search + '&' + X_DOMAIN_STRING
-    } else {
-      link.search = X_DOMAIN_STRING
+if( document.URL.match(/redmine.instructure.com/) ){
+  var links = document.getElementById('content').getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    var link = links[i];
+    if (link.protocol === "https:" && link.host.match(/.instructure.com$/)) {
+      if (link.search) {
+        link.search = link.search + '&' + X_DOMAIN_STRING
+      } else {
+        link.search = X_DOMAIN_STRING
+      }
     }
   }
 }
